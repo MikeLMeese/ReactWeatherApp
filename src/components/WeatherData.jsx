@@ -1,6 +1,7 @@
 import React from "react";
 
-const WeatherConditions = (props) => {
+const WeatherConditions = ({weatherData}) => {
+    console.log(weatherData.main)
     let date = new Date().toLocaleDateString('en-us', { 
         weekday:"short", 
         month:"short", 
@@ -10,14 +11,14 @@ const WeatherConditions = (props) => {
       });
     return (
         <div className="weather">
-        <h2 className="city">Today's forecast for {props.weatherData.name}</h2>
-        <h1 className="currentTemp">{props.weatherData.temp}°F</h1>
-        <h3 className="highTemp">Today's high will be {props.weatherData.temp_max}°F</h3>
-        <h3 className="lowTemp">Today's low will be {props.weatherData.temp_min}°F</h3>
-        <img src={props.weatherData.icon} alt="weatherData icon" className="icon" />
-        <div className="description">{props.weatherData.description}</div>
-        <div className="humidity">Humidity: {props.weatherData.humidity}%</div>
-        <div className="wind-speed">Wind Speed: {props.weatherData.speed} mph</div>
+        <h2 className="city">Today's forecast for {weatherData.name}</h2>
+        <h1 className="currentTemp">{weatherData.main.temp}°F</h1>
+        <h3 className="highTemp">Today's high will be {weatherData.main.temp_max}°F</h3>
+        <h3 className="lowTemp">Today's low will be {weatherData.main.temp_min}°F</h3>
+        <h3 className="feelsLike">Today's weather feels like {weatherData.main.feels_like}°F</h3>
+        <div className="description">Today's conditions are {weatherData.weather[0].description}</div>
+        <div className="humidity">Humidity: {weatherData.main.humidity}%</div>
+        <div className="wind-speed">Wind Speed: {weatherData.wind.speed} mph</div>
         <div className="date">{date}</div>
       </div>
     )

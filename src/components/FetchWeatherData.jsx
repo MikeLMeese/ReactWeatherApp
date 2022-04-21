@@ -46,9 +46,13 @@ function getWeatherData(e) {
           </svg>
                 </button>
             </form>
+            {(typeof weatherData.main != 'undefined') ? (
             <WeatherConditions
                weatherData={weatherData}
                />
+            ): (
+                <div></div>
+            )}
         </div>
     )
 }
